@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Baget</string>
+    <string name="title_feed">Feed</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_files">Files</string>
+    <string name="title_umk">Umk</string>
+</resources>
