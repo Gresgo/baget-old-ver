@@ -1,4 +1,4 @@
-package com.urtisi.baget.ui.home
+package com.urtisi.baget.umk
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,19 +9,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.urtisi.baget.R
-import kotlinx.android.synthetic.main.fragment_feed.view.*
+import kotlinx.android.synthetic.main.fragment_umk.view.*
 
-class HomeFragment : Fragment() {
+class UmkFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var umkViewModel: UmkViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_feed, container, false)
-        val textView: TextView = root.text_home
+        umkViewModel = ViewModelProviders.of(this).get(UmkViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_umk, container, false)
+        val textView: TextView = root.text_umk
 
-        homeViewModel.text.observe(this, Observer {
+        umkViewModel.text.observe(this, Observer {
             textView.text = it
         })
 

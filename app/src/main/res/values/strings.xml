@@ -4,4 +4,5 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_files">Files</string>
     <string name="title_umk">Umk</string>
+    <string name="login">Login</string>
 </resources>

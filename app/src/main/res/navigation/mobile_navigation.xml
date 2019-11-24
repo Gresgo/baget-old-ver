@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_feed"
-        android:name="com.urtisi.baget.ui.home.HomeFragment"
+        android:name="com.urtisi.baget.feed.FeedFragment"
         android:label="@string/title_feed"
         tools:layout="@layout/fragment_feed" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.urtisi.baget.ui.dashboard.DashboardFragment"
+        android:name="com.urtisi.baget.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_files"
-        android:name="com.urtisi.baget.ui.notifications.NotificationsFragment"
+        android:name="com.urtisi.baget.files.FilesFragment"
         android:label="@string/title_files"
         tools:layout="@layout/fragment_files" />
 
     <fragment
         android:id="@+id/navigation_umk"
-        android:name="com.urtisi.baget.ui.umk.UmkFragment"
+        android:name="com.urtisi.baget.umk.UmkFragment"
         android:label="@string/title_umk"
         tools:layout="@layout/fragment_umk" />
 </navigation>

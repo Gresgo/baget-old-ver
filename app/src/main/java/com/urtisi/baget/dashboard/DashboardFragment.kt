@@ -1,30 +1,33 @@
-package com.urtisi.baget.ui.dashboard
+package com.urtisi.baget.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.urtisi.baget.R
-import kotlinx.android.synthetic.main.fragment_dashboard.view.*
+import com.urtisi.baget.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var binding: FragmentDashboardBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+//        retainInstance = true
         dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.text_dashboard
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
+        binding.viewModel = dashboardViewModel
+        binding.executePendingBindings()
 
-        dashboardViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+//        dashboardViewModel.text.observe(this, Observer {
+//            textView.text = it
+//        })
 
-        return root
+        return binding.root
     }
 }
