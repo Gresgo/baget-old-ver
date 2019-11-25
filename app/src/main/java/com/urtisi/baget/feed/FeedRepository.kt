@@ -6,13 +6,14 @@ import com.urtisi.baget.util.RSSParser
 
 class FeedRepository {
 
-    fun getData(onDataReadyCallback: OnDataReadyCallback){
-        val rss = RSSParser()
-        rss.execute()
-        onDataReadyCallback.onDataReady(rss.get())
+    fun getData(onDataReadyCallback: OnRSSReadyCallback){
+//        val rss = RSSParser(this)
+//        rss.execute()
+//        onDataReadyCallback.onDataReady(rss.get())
     }
+
 }
 
-interface OnDataReadyCallback{
+interface OnRSSReadyCallback{
     fun onDataReady(data: ArrayList<RSSModel>)
 }

@@ -2,11 +2,12 @@ package com.urtisi.baget.util
 
 import android.os.AsyncTask
 import android.util.Xml
+import com.urtisi.baget.feed.FeedViewModel
 import org.xmlpull.v1.XmlPullParser
 import java.io.InputStream
 import java.net.URL
 
-class RSSParser : AsyncTask<Void, Void, ArrayList<RSSModel>>() {
+class RSSParser(private val caller: FeedViewModel) : AsyncTask<Void, Void, ArrayList<RSSModel>>() {
 
     private val URllink = "http://uisi.ru/uisi/general/news.php?rss=y"
 
@@ -22,7 +23,6 @@ class RSSParser : AsyncTask<Void, Void, ArrayList<RSSModel>>() {
 
         return feed
     }
-
 
     private fun parseRSS(inp: InputStream) : ArrayList<RSSModel> {
 
@@ -90,11 +90,16 @@ class RSSParser : AsyncTask<Void, Void, ArrayList<RSSModel>>() {
 
             }
 
-            return rss
+        } catch (e: Error){
+
         } finally {
             inp.close()
         }
 
+        return rss
+    }
 
+    override fun onPostExecute(result: ArrayList<RSSModel>?) {
+            caller.onDataReady(result!!)
     }
 }

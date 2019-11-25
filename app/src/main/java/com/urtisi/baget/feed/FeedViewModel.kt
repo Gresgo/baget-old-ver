@@ -1,25 +1,26 @@
 package com.urtisi.baget.feed
 
-import androidx.databinding.ObservableField
-import androidx.lifecycle.LiveData
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.urtisi.baget.util.RSSModel
+import com.urtisi.baget.util.RSSParser
 
-class FeedViewModel : ViewModel() {
+class FeedViewModel : ViewModel(), OnRSSReadyCallback {
 
     var feedList = MutableLiveData<ArrayList<RSSModel>>()
-    val repository = FeedRepository()
+    private val repository = FeedRepository()
 
     init {
         loadData()
     }
 
     fun loadData(){
-        repository.getData(object : OnDataReadyCallback{
-            override fun onDataReady(data: ArrayList<RSSModel>) {
-                feedList.value = data
-            }
-        })
+        val rss = RSSParser(this)
+        rss.execute()
+    }
+
+    override fun onDataReady(data: ArrayList<RSSModel>) {
+        feedList.value = data
     }
 }
