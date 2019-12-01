@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,13 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.urtisi.baget.R
 import com.urtisi.baget.databinding.FragmentFeedBinding
 import com.urtisi.baget.util.RSSModel
-import kotlinx.android.synthetic.main.fragment_feed.view.*
 
 class FeedFragment : Fragment() {
 
     private lateinit var feedViewModel: FeedViewModel
     private lateinit var binding: FragmentFeedBinding
-    private val RSSViewAdapter = RSSAdapter(arrayListOf())
+    private val rssViewAdapter = RSSAdapter(arrayListOf())
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -29,11 +27,16 @@ class FeedFragment : Fragment() {
         binding.executePendingBindings()
 
         binding.feedRecView.layoutManager = LinearLayoutManager(activity!!.applicationContext)
-        binding.feedRecView.adapter = RSSViewAdapter
+        binding.feedRecView.adapter = rssViewAdapter
 
         feedViewModel.feedList.observe(this, Observer<ArrayList<RSSModel>>{
-            it?.let { RSSViewAdapter.replaceData(it) }
+            it?.let { rssViewAdapter.replaceData(it) }
         })
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+//            feedViewModel.loadData()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
 
         return binding.root
     }

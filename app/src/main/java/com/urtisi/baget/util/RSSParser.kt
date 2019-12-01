@@ -1,11 +1,14 @@
 package com.urtisi.baget.util
 
 import android.os.AsyncTask
+import android.util.Log
 import android.util.Xml
 import com.urtisi.baget.feed.FeedViewModel
 import org.xmlpull.v1.XmlPullParser
 import java.io.InputStream
 import java.net.URL
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RSSParser(private val caller: FeedViewModel) : AsyncTask<Void, Void, ArrayList<RSSModel>>() {
 
@@ -66,19 +69,21 @@ class RSSParser(private val caller: FeedViewModel) : AsyncTask<Void, Void, Array
                     parser.nextTag()
                 }
 
-                if (name.equals("title", true)){
-                    title = result
-                } else if (name.equals("link", true)){
-                    link = result
-                } else if (name.equals("description", true)){
-                    description = result
-                } else if (name.equals("pubDate", true)){
-                    pubDate = result
+                when (name.toLowerCase(Locale.ENGLISH)){
+                    "title" -> title = result
+                    "link" -> link = result
+                    "description" -> {
+                        description = Regex("""<.*?>""").replace(result, "")
+                        description = Regex("""\s*(?=\n)""").replace(description,"")//(?<=\s)\s
+                        description = Regex("""\t""").replace(description," - ")
+//                        Log.d("mems", description)
+                    }
+                    "pubdate" -> pubDate = result
                 }
 
                 if (title != null && link != null && description != null && pubDate != null){
                     if (isItem){
-                        rss.add(RSSModel(title, description, pubDate, link))
+                        rss.add(RSSModel(title, description.trim(), pubDate, link))
                     }
 
                     title = null

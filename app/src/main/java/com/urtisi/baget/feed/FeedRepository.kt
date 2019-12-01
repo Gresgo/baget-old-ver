@@ -7,9 +7,6 @@ import com.urtisi.baget.util.RSSParser
 class FeedRepository {
 
     fun getData(onDataReadyCallback: OnRSSReadyCallback){
-//        val rss = RSSParser(this)
-//        rss.execute()
-//        onDataReadyCallback.onDataReady(rss.get())
     }
 
 }

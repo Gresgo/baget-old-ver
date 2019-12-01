@@ -19,10 +19,10 @@ class DashboardFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 //        retainInstance = true
-        dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel::class.java)
+//        dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
-        binding.viewModel = dashboardViewModel
-        binding.executePendingBindings()
+//        binding.viewModel = dashboardViewModel
+//        binding.executePendingBindings()
 
 //        dashboardViewModel.text.observe(this, Observer {
 //            textView.text = it
