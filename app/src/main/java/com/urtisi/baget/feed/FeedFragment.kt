@@ -26,13 +26,22 @@ class FeedFragment : Fragment() {
         binding.viewModel = feedViewModel
         binding.executePendingBindings()
 
+        /**
+         * setting up adapter for rss news
+         */
         binding.feedRecView.layoutManager = LinearLayoutManager(activity!!.applicationContext)
         binding.feedRecView.adapter = rssViewAdapter
 
+        /**
+         * observing rss news list/data
+         */
         feedViewModel.feedList.observe(this, Observer<ArrayList<RSSModel>>{
             it?.let { rssViewAdapter.replaceData(it) }
         })
 
+        /**
+         * refresh handling
+         */
         binding.swipeRefreshLayout.setOnRefreshListener {
 //            feedViewModel.loadData()
             binding.swipeRefreshLayout.isRefreshing = false

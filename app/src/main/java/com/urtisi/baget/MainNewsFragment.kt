@@ -16,6 +16,9 @@ class MainNewsFragment : Fragment() {
 
     private lateinit var binding: FragmentNewsMainBinding
 
+    /**
+     * fragment for news screen, contains two fragments for website and changes
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news_main, container, false)
@@ -33,7 +36,7 @@ class MainNewsFragment : Fragment() {
     class PagerAdapter (fm: FragmentManager): FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
 
         private val pageCount = 2
-        private val titles = arrayOf("site", "vk")
+        private val titles = arrayOf("news", "changes")
         private val fragments = arrayOf(FeedFragment(), VKFragment())
 
         override fun getItem(position: Int): Fragment = fragments[position]

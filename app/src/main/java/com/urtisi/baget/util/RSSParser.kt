@@ -11,9 +11,14 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class RSSParser(private val caller: FeedViewModel) : AsyncTask<Void, Void, ArrayList<RSSModel>>() {
-
+    /**
+     * async task for loading and parsing RSS from website
+     */
     private val URllink = "http://uisi.ru/uisi/general/news.php?rss=y"
 
+    /**
+     * loading rss
+     */
     override fun doInBackground(vararg params: Void?): ArrayList<RSSModel> {
         var feed = ArrayList<RSSModel>()
         try{
@@ -27,6 +32,9 @@ class RSSParser(private val caller: FeedViewModel) : AsyncTask<Void, Void, Array
         return feed
     }
 
+    /**
+     * parse (clear html tags)
+     */
     private fun parseRSS(inp: InputStream) : ArrayList<RSSModel> {
 
         var isItem = false
